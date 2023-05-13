@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cajero Automático</title>
+  <script>
+    // Cuentas de ejemplo
+    var cuentas = [
+      { nombre: "Cuenta 1", saldo: 100000, contraseña: "123456" },
+      { nombre: "Cuenta 2", saldo: 50000, contraseña: "abcdef" },
+      { nombre: "Cuenta 3", saldo: 200000, contraseña: "qwerty" }
+    ];
+
+    // Función para mostrar una ventana emergente y obtener el nombre del usuario
+    function obtenerNombre() {
+      var nombre = prompt("Introduce tu nombre:");
+      document.getElementById("nombre-usuario").textContent = "Bienvenido, " + nombre;
+    }
+
+    // Función para validar la contraseña ingresada
+    function validarContraseña(cuentaIndex) {
+      var contraseña = prompt("Introduce tu contraseña:");
+      if (contraseña === cuentas[cuentaIndex].contraseña) {
+        mostrarEstadoCuenta(cuentaIndex);
+      } else {
+        alert("Contraseña incorrecta. Inténtalo de nuevo.");
+        location.reload(); // Recargar la página
+      }
+    }
+
+    // Función para mostrar el estado de cuenta y las opciones disponibles
+    function mostrarEstadoCuenta(cuentaIndex) {
+      var cuenta = cuentas[cuentaIndex];
+      var saldo = cuenta.saldo.toFixed(2);
+      document.getElementById("saldo").textContent = "Saldo disponible: $" + saldo;
+      document.getElementById("opciones").style.display = "block";
+    }
+
+    // Función para ingresar dinero
+    function ingresarDinero(cuentaIndex) {
+      var cantidad = parseFloat(prompt("Ingresa la cantidad de dinero a ingresar:"));
+      if (isNaN(cantidad) || cantidad <= 0) {
+        alert("Cantidad inválida. Inténtalo de nuevo.");
+        return;
+      }
+      cuentas[cuentaIndex].saldo += cantidad;
+      verificarLimitesSaldo(cuentaIndex);
+      mostrarEstadoCuenta(cuentaIndex);
+    }
+
+    // Función para retirar dinero
+    function retirarDinero(cuentaIndex) {
+      var cantidad = parseFloat(prompt("Ingresa la cantidad de dinero a retirar:"));
+      if (isNaN(cantidad) || cantidad <= 0) {
+        alert("Cantidad inválida. Inténtalo de nuevo.");
+        return;
+      }
+      var cuenta = cuentas[cuentaIndex];
+      if (cantidad > cuenta.saldo) {
+        alert("Saldo insuficiente. Inténtalo de nuevo.");
+        return;
+      }
+      cuenta.saldo -= cantidad;
+      verificarLimitesSaldo(cuentaIndex);
+      mostrarEstadoCuenta(cuentaIndex);
+    }
+
+    // Función para verificar y ajustar los límites de saldo
+    function verificarLimitesSaldo(cuentaIndex) {
+      var cuenta = cuentas[cuentaIndex];
+      if (cuenta.saldo < 10) {
+        cuenta.saldo = 10;
+      } else if (cuenta.saldo > 999999) {
+        cuenta.saldo = 999999;
+      }
+    }
+  </script>
+</head>
+<body onload="obtenerNombre()">
+  <h1 id="nombre-usuario"></h1>
+
+  <div id="opciones" style="display: none;">
+<h2>Estado de cuenta</h2>
+<p id="saldo"></p>
+
+php
+Copy code
+<h2>Opciones disponibles</h2>
+<button onclick="ingresarDinero(0)">Ingresar dinero</button>
+<button onclick="retirarDinero(0)">Retirar dinero</button>
+  </div>
+  <script>
+    var cuentaIndex = 0; // Índice de la cuenta seleccionada (en este caso, cuenta 1)
+    validarContraseña(cuentaIndex); // Validar la contraseña al cargar la página
+  </script>
+</body>
+</html>
+
