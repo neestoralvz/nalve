@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: "Calibri", sans-serif;
+      background-color: navy;
+      color: white;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid white;
+    }
+    th {
+      background-color: #0040ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ficha Técnica: Sulfato de Aluminio Sólido</h1>
+  <table>
+    <tr>
+      <th>Propiedad</th>
+      <th>Descripción</th>
+    </tr>
+    <tr>
+      <td>Nombre químico</td>
+      <td>Sulfato de Aluminio</td>
+    </tr>
+    <tr>
+      <td>Fórmula química</td>
+      <td>Al2(SO4)3</td>
+    </tr>
+    <tr>
+      <td>Peso molecular</td>
+      <td>342.15 g/mol</td>
+    </tr>
+    <tr>
+      <td>Aspecto</td>
+      <td>Sólido cristalino blanco</td>
+    </tr>
+    <tr>
+      <td>Punto de fusión</td>
+      <td>770 °C</td>
+    </tr>
+    <tr>
+      <td>Punto de ebullición</td>
+      <td>Decomposición antes de la ebullición</td>
+    </tr>
+    <tr>
+      <td>Densidad</td>
+      <td>2.71 g/cm³</td>
+    </tr>
+    <tr>
+      <td>Solubilidad en agua</td>
+      <td>65 g/100 mL a 20 °C</td>
+    </tr>
+    <tr>
+      <td>Estabilidad</td>
+      <td>Estable en condiciones normales de almacenamiento y uso</td>
+    </tr>
+    <tr>
+      <td>Usos</td>
+      <td>
+        <ul>
+          <li>Tratamiento de aguas: coagulante para clarificar y purificar el agua</li>
+          <li>Industria papelera: agente de carga y aglutinante</li>
+          <li>Industria textil: fijador de colorantes</li>
+          <li>Industria de cuero: curtido de pieles</li>
+          <li>Producción de pigmentos y tintas</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
