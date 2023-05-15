@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feria del Ostion - Diseño de Playeras</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.0/svg.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1e465e;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #1e465e;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        #illustration {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diseño de Playeras - Feria del Ostion</h1>
+        <h2>Parte Trasera</h2>
+        <p>En la parte trasera de las playeras, se colocará el verso:</p>
+        <p>En la Feria del Ostion, José Alberto brilla sin comparación. Su reinado es toda una sensación.</p>
+        <p>El verso estará ubicado en el centro de la playera, con una tipografía elegante y legible.</p>
+        <div id="illustration"></div>
+        <p>Además, se agregarán elementos gráficos sutiles relacionados con el mar y la realeza.</p>
+        <p>La composición será equilibrada, distribuyendo los elementos de manera armoniosa alrededor del verso.</p>
+        <p>Recuerda colaborar estrechamente con tu diseñador gráfico para refinar y adaptar el diseño según tus preferencias y requisitos técnicos específicos.</p>
+    </div>
+
+    <script>
+        // Código JavaScript utilizando SVG.js
+        const draw = SVG().addTo('#illustration').size(400, 200);
+        
+        // Dibujar el verso
+        draw.text("En la Feria del Ostion, José Alberto brilla sin comparación.")
+            .font({ size: 20, family: 'Arial', anchor: 'middle' })
+            .move(200, 50);
+        
+        draw.text("Su reinado es toda una sensación.")
+            .font({ size: 20, family: 'Arial', anchor: 'middle' })
+            .move(200, 100);
+        
+        // Dibujar ilustraciones
+        const crown = draw.image('crown.svg', 50, 50).move(100, 150);
+        
+        const ostion1 = draw .image('ostion.svg', 30, 30).move(150, 150);
+        const ostion2 = draw.image('ostion.svg', 30, 30).move(200, 150);
+        const ostion3 = draw.image('ostion.svg',         30, 30).move(250, 150);
+        
+        // Agregar estilos a las ilustraciones
+        crown.style('opacity: 0.8');
+        ostion1.style('opacity: 0.6');
+        ostion2.style('opacity: 0.6');
+        ostion3.style('opacity: 0.6');
+    </script>
+</body>
+</html>
+
