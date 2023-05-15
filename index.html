@@ -20,7 +20,7 @@
         var list = $('<ul>');
         webPages.forEach(function(page) {
           var listItem = $('<li>');
-          var link = $('<a>').attr('href', page.html_url).text(page.name);
+          var link = $('<a>').attr('href', page.download_url).text(page.name);
           listItem.append(link);
           list.append(listItem);
         });
