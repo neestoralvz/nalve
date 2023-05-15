@@ -1,1 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Corona en SVG.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.16/svg.min.js"></script>
+</head>
+<body>
+    <div id="drawing"></div>
+
+    <script>
+        var draw = SVG().addTo('#drawing').size(300, 300);
+        var rect = draw.rect(100, 20).fill('gold').move(100, 140);
+        for(var i=0; i<5; i++) {
+            draw.rect(20, 80).fill('gold').move(80 + i*40, 100);
+        }
+    </script>
+</body>
+</html>
 
