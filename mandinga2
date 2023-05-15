@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mandinga Mágica: Descubre el Encanto de Veracruz</title>
+  <style>
+    /* Estilos CSS personalizados para adaptar el diseño */
+    /* ... Estilos CSS anteriores ... */
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mandinga Mágica: Descubre el Encanto de Veracruz</h1>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#lugares">Lugares de Interés</a></li>
+        <li><a href="#restaurantes">Restaurantes</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="inicio">
+    <h2>Bienvenidos a Mandinga, Veracruz</h2>
+    <p>Sumérgete en el encanto pintoresco de Mandinga, Veracruz, un destino mágico ubicado en las costas del Golfo de México. Con su hermoso paisaje costero, exuberantes manglares y una rica cultura marítima, Mandinga es conocida como 'La Isla de las Conchitas'. Explora sus encantadoras calles, degusta deliciosos sabores locales y descubre la calidez de su gente.</p>
+  </section>
+
+  <section id="lugares">
+    <h2>Lugares de Interés</h2>
+    <ul id="lugares-lista">
+      <li>El Chapoton</li>
+      <li>Otro lugar de interés</li>
+      <!-- Agrega más lugares de interés -->
+    </ul>
+  </section>
+
+  <section id="restaurantes">
+    <h2>Restaurantes</h2>
+    <ul id="restaurantes-lista">
+      <li>Taqueria Claudia</li>
+      <li>Otro restaurante</li>
+      <!-- Agrega más restaurantes -->
+    </ul>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>Para más información, contáctanos:</p>
+    <p>Nombre: Óscar Torres</p>
+    <p>Teléfono: [Ingresa el número de teléfono aquí]</p>
+    <p>Email: [Ingresa el correo electrónico aquí]</p>
+  </section>
+
+  <footer>
+    <p>Derechos de autor © 2023 Mandinga Mágica: Descubre el Encanto de Veracruz.</p>
+  </footer>
+  <script>
+    // JavaScript para hacer la página más llamativa
+    const lugaresLista = document.getElementById('lugares-lista');
+    const restaurantesLista = document.getElementById('restaurantes-lista');
+
+    lugaresLista.addEventListener('mouseover', resaltarItem);
+    lugaresLista.addEventListener('mouseout', quitarResaltadoItem);
+
+    restaurantesLista.addEventListener('mouseover', resaltarItem);
+    restaurantesLista.addEventListener('mouseout', quitarResaltadoItem);
+
+    function resaltarItem(event) {
+      const item = event.target;
+      item.style.backgroundColor = '#f5f5f5';
+      item.style.color = '#0080ff';
+    }
+
+    function quitarResaltadoItem(event) {
+      const item = event.target;
+      item.style.backgroundColor = 'transparent';
+      item.style.color = 'initial';
+    }
+  </script>
+</body>
+</html>
+
+  
