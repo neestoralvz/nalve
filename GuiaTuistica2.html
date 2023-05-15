@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mandinga Mágica: Descubre el Encanto de Veracruz</title>
+  <style>
+    /* Estilos CSS personalizados para adaptar el diseño */
+    /* ... */
+
+    /* Estilos adicionales para interacciones */
+    .highlight {
+      background-color: #f9cb9c;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- ... -->
+  </header>
+
+  <section id="inicio">
+    <!-- ... -->
+  </section>
+
+  <section id="lugares">
+    <!-- ... -->
+  </section>
+
+  <section id="restaurantes">
+    <!-- ... -->
+  </section>
+
+  <section id="contacto">
+    <!-- ... -->
+  </section>
+
+  <footer>
+    <!-- ... -->
+  </footer>
+
+  <script>
+    // JavaScript para agregar interactividad
+
+    // Destacar elementos al hacer clic en los enlaces del menú
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const sectionId = link.getAttribute('href').substring(1);
+        const section = document.getElementById(sectionId);
+        section.classList.add('highlight');
+        setTimeout(() => {
+          section.classList.remove('highlight');
+        }, 1000);
+      });
+    });
+
+    // Cambiar el color de fondo del encabezado al hacer scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 0) {
+        header.style.backgroundColor = '#0080ff';
+      } else {
+        header.style.backgroundColor = 'transparent';
+      }
+    });
+
+    // Agregar efecto de animación a la sección de restaurantes
+    const restaurantSection = document.getElementById('restaurantes');
+    restaurantSection.addEventListener('mouseover', () => {
+      restaurantSection.style.transform = 'rotate(5deg)';
+    });
+    restaurantSection.addEventListener('mouseout', () => {
+      restaurantSection.style.transform = 'rotate(0deg)';
+    });
+  </script>
+</body>
+</html>
 
