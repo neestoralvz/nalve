@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mandinga Mágica: Descubre el Encanto de Veracruz</title>
+  <style>
+    /* Estilos CSS personalizados */
+    /* ... */
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- ... -->
+  </header>
+
+  <section id="inicio">
+    <!-- ... -->
+  </section>
+
+  <section id="lugares">
+    <!-- ... -->
+  </section>
+
+  <section id="restaurantes">
+    <!-- ... -->
+  </section>
+
+  <section id="contacto">
+    <!-- ... -->
+  </section>
+
+  <footer>
+    <!-- ... -->
+  </footer>
+
+  <script>
+    // Código JavaScript para hacer la página más llamativa
+
+    // Mostrar y ocultar contenido de las secciones con efecto deslizante
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section) => {
+      section.addEventListener('click', () => {
+        const content = section.querySelector('ul');
+        content.classList.toggle('hidden');
+      });
+    });
+
+    // Animación de desplazamiento suave al hacer clic en los enlaces del menú
+    const navLinks = document.querySelectorAll('nav ul li a');
+    navLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Efecto de resaltado al pasar el mouse sobre los lugares de interés
+    const lugares = document.querySelectorAll('#lugares li');
+    lugares.forEach((lugar) => {
+      lugar.addEventListener('mouseover', () => {
+        lugar.style.backgroundColor = '#ffc107';
+      });
+
+      lugar.addEventListener('mouseout', () => {
+        lugar.style.backgroundColor = '';
+      });
+    });
+
+    // Efecto de cambio de color en el encabezado al hacer scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.backgroundColor = '#333';
+        header.style.color = '#fff';
+      } else {
+        header.style.backgroundColor = '#0080ff';
+        header.style.color = '#fff';
+      }
+    });
+  </script>
+</body>
+</html>
