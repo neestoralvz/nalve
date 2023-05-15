@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Índice de archivos</title>
+  <title>Índice de Páginas Web</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(document).ready(function() {
-      // Realiza una solicitud GET al repositorio de GitHub para obtener la lista de archivos
+      // Realiza una solicitud GET a la API de GitHub para obtener la lista de archivos
       $.ajax({
         url: 'https://api.github.com/repos/neestoralvz/nalve/contents/',
         dataType: 'json'
       })
       .done(function(data) {
-        // Procesa la respuesta y genera la lista de archivos en el índice
-        var files = data.filter(function(item) {
-          return item.type === 'file';
+        // Filtra los archivos para mostrar solo las páginas web (por ejemplo, archivos HTML)
+        var webPages = data.filter(function(item) {
+          return item.type === 'file' && item.name.endsWith('.html');
         });
 
+        // Genera la lista de enlaces a las páginas web en el índice
         var list = $('<ul>');
-        files.forEach(function(file) {
+        webPages.forEach(function(page) {
           var listItem = $('<li>');
-          var link = $('<a>').attr('href', file.html_url).text(file.name);
+          var link = $('<a>').attr('href', page.html_url).text(page.name);
           listItem.append(link);
           list.append(listItem);
         });
 
-        $('#file-list').append(list);
+        $('#page-list').append(list);
       })
       .fail(function() {
         console.error('Error al obtener la lista de archivos');
@@ -33,7 +34,7 @@
   </script>
 </head>
 <body>
-  <h1>Índice de archivos</h1>
-  <div id="file-list"></div>
+  <h1>Índice de Páginas Web</h1>
+  <div id="page-list"></div>
 </body>
 </html>
