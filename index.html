@@ -19,10 +19,21 @@
         // Genera la lista de enlaces a las páginas web en el índice
         var list = $('<ul>');
         webPages.forEach(function(page) {
-          var listItem = $('<li>');
-          var link = $('<a>').attr('href', page.name).text(getPageTitle(page.name));
-          listItem.append(link);
-          list.append(listItem);
+          // Obtiene el contenido del archivo para extraer el título
+          $.ajax({
+            url: page.download_url,
+            dataType: 'text'
+          })
+          .done(function(content) {
+            var title = /<title>(.*?)<\/title>/g.exec(content)[1];
+            var listItem = $('<li>');
+            var link = $('<a>').attr('href', page.name).text(title);
+            listItem.append(link);
+            list.append(listItem);
+          })
+          .fail(function() {
+            console.error('Error al obtener el contenido del archivo ' + page.name);
+          });
         });
 
         $('#page-list').append(list);
@@ -31,11 +42,6 @@
         console.error('Error al obtener la lista de archivos');
       });
     });
-
-    function getPageTitle(filename) {
-      // Elimina la extensión ".html" del nombre de archivo y devuelve el título
-      return filename.replace('.html', '');
-    }
   </script>
 </head>
 <body>
