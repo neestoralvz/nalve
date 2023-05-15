@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Índice de Repositorio</title>
+  <title>Índice de archivos</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-  <h1>Índice de Repositorio</h1>
-  <ul id="file-list"></ul>
-
   <script>
-    // Nombre de usuario y nombre del repositorio
-    var username = "neestoralvz";
-    var repository = "nalve";
+    $(document).ready(function() {
+      // Realiza una solicitud GET al repositorio de GitHub para obtener la lista de archivos
+      $.ajax({
+        url: 'https://api.github.com/repos/neestoralvz/nalve/contents/',
+        dataType: 'json'
+      })
+      .done(function(data) {
+        // Procesa la respuesta y genera la lista de archivos en el índice
+        var files = data.filter(function(item) {
+          return item.type === 'file';
+        });
 
-    // URL de la API de GitHub para obtener la lista de archivos
-    var apiUrl = "https://api.github.com/repos/" + neestoralvz + "/" + nalve + "/contents";
+        var list = $('<ul>');
+        files.forEach(function(file) {
+          var listItem = $('<li>');
+          var link = $('<a>').attr('href', file.html_url).text(file.name);
+          listItem.append(link);
+          list.append(listItem);
+        });
 
-    // Realiza una solicitud GET a la API de GitHub
-    $.get(apiUrl, function(data) {
-      // Itera sobre la lista de archivos
-      data.forEach(function(file) {
-        // Crea un elemento de lista y un enlace para cada archivo
-        var listItem = document.createElement("li");
-        var link = document.createElement("a");
-        link.href = file.html_url;
-        link.textContent = file.name;
-        listItem.appendChild(link);
-
-        // Agrega el elemento de lista al índice
-        document.getElementById("file-list").appendChild(listItem);
+        $('#file-list').append(list);
+      })
+      .fail(function() {
+        console.error('Error al obtener la lista de archivos');
       });
     });
   </script>
+</head>
+<body>
+  <h1>Índice de archivos</h1>
+  <div id="file-list"></div>
 </body>
 </html>
