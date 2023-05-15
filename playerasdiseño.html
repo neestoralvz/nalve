@@ -73,35 +73,31 @@
             rect(x - size / 4, y + size / 3, size / 2, size / 2);
         }
 
-        function drawOyster(x, y, size) {
+                function drawOyster(x, y, size) {
             fill(192); // Color gris
-            noStroke();m
-            // Dibuja la forma del ostiónfunction drawOyster(x, y, size) {
-fill(192); // Color gris
-noStroke();
-// Dibuja la forma del ostión
-beginShape();
-vertex(x - size / 2, y);
-bezierVertex(x - size / 2, y - size / 2, x + size / 2, y - size / 2, x + size / 2, y);
-bezierVertex(x + size / 2, y + size / 2, x - size / 2, y + size / 2, x - size / 2, y);
-endShape(CLOSE);
-}
+            noStroke();
+            // Dibuja la forma del ostión
+            beginShape();
+            vertex(x - size / 2, y);
+            bezierVertex(x - size / 2, y - size / 4, x - size / 4, y - size / 2, x, y - size / 2);
+            bezierVertex(x + size / 4, y - size / 2, x + size / 2, y - size / 4, x + size / 2, y);
+            bezierVertex(x + size / 2, y + size / 4, x + size / 4, y + size / 2, x, y + size / 2);
+            bezierVertex(x - size / 4, y + size / 2, x - size / 2, y + size / 4, x - size / 2, y);
+            endShape(CLOSE);
+        }
 
-function drawWave(x, y, sizeX, sizeY) {
-fill(30, 144, 255); // Color azul
-noStroke();
-// Dibuja la forma de la ola
-beginShape();
-vertex(x - sizeX / 2, y);
-bezierVertex(x - sizeX / 4, y - sizeY, x + sizeX / 4, y - sizeY, x + sizeX / 2, y);
-bezierVertex(x + sizeX / 4, y + sizeY, x - sizeX / 4, y + sizeY, x - sizeX / 2, y);
-endShape(CLOSE);
-}
-
-function windowResized() {
-resizeCanvas(windowWidth, windowHeight);
-}
-</script>
-
+        function drawWave(x, y, sizeX, sizeY) {
+            fill(30, 144, 255); // Color azul
+            noStroke();
+            // Dibuja la forma de la ola
+            beginShape();
+            vertex(x - sizeX / 2, y);
+            bezierVertex(x - sizeX / 2, y - sizeY / 4, x - sizeX / 4, y - sizeY / 2, x, y - sizeY / 2);
+            bezierVertex(x + sizeX / 4, y - sizeY / 2, x + sizeX / 2, y - sizeY / 4, x + sizeX / 2, y);
+            bezierVertex(x + sizeX / 2, y + sizeY / 4, x + sizeX / 4, y + sizeY / 2, x, y + sizeY / 2);
+            bezierVertex(x - sizeX / 4, y + sizeY / 2, x - sizeX / 2, y + sizeY / 4, x - sizeX / 2, y);
+            endShape(CLOSE);
+        }
+    </script>
 </body>
 </html>
