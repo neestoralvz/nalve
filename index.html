@@ -20,7 +20,7 @@
         var list = $('<ul>');
         webPages.forEach(function(page) {
           var listItem = $('<li>');
-          var link = $('<a>').attr('href', page.name).text(page.name);
+          var link = $('<a>').attr('href', page.name).text(getPageTitle(page.name));
           listItem.append(link);
           list.append(listItem);
         });
@@ -31,6 +31,11 @@
         console.error('Error al obtener la lista de archivos');
       });
     });
+
+    function getPageTitle(filename) {
+      // Elimina la extensión ".html" del nombre de archivo y devuelve el título
+      return filename.replace('.html', '');
+    }
   </script>
 </head>
 <body>
