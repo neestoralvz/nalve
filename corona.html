@@ -1,45 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Corona en paper.js</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.11/paper-full.min.js"></script>
+    <title>Corona en Three.js</title>
     <style>
-        canvas { width: 100%; height: 100% }
+        body { margin: 0; }
+        canvas { display: block; }
     </style>
+    <script src="https://threejs.org/build/three.min.js"></script>
 </head>
 <body>
-    <canvas id="myCanvas" resize></canvas>
-
-    <script type="text/paperscript" canvas="myCanvas">
-        // Configurar el color dorado
-        var gold = new Color(1, 0.843, 0);
+    <script>
+        // Crear escena, cámara y renderizador
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
         // Crear la base de la corona
-        var crownBase = new Path.Rectangle({
-            point: [view.center.x - 50, view.center.y],
-            size: [100, 20],
-            fillColor: gold
-        });
+        var ringGeometry = new THREE.TorusGeometry(1, 0.2, 16, 100);
+        var material = new THREE.MeshBasicMaterial({color: 0xFFFF00});
+        var ring = new THREE.Mesh(ringGeometry, material);
+        scene.add(ring);
 
-        // Crear las puntas de la corona
-        var peakPath = new Path();
-        peakPath.strokeColor = 'gold';
-        peakPath.add(new Point(view.center.x - 40, view.center.y - 60));
-        peakPath.add(new Point(view.center.x - 20, view.center.y));
-        peakPath.add(new Point(view.center.x, view.center.y - 60));
-        peakPath.add(new Point(view.center.x + 20, view.center.y));
-        peakPath.add(new Point(view.center.x + 40, view.center.y - 60));
-        peakPath.fillColor = gold;
-
-        // Crear las joyas de la corona
-        var gemColors = ['red', 'blue', 'green', 'purple', 'red'];
-        for (var i = 0; i < 5; i++) {
-            var gem = new Path.Circle({
-                center: peakPath.segments[i].point,
-                radius: 5,
-                fillColor: gemColors[i]
-            });
+        // Crear los picos de la corona
+        for(let i=0; i<10; i++) {
+            var spikeGeometry = new THREE.ConeGeometry(0.2, 1, 8);
+            var spike = new THREE.Mesh(spikeGeometry, material);
+            spike.position.y = 0.5;
+            spike.rotation.x = Math.PI / 2;
+            var spikeGroup = new THREE.Group();
+            spikeGroup.add(spike);
+            spikeGroup.rotation.y = i * (Math.PI / 5);
+            ring.add(spikeGroup);
         }
+
+        // Posicionar la cámara
+        camera.position.z = 5;
+
+        // Función de animación
+        var animate = function () {
+            requestAnimationFrame(animate);
+            ring.rotation.x += 0.01;
+            ring.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        };
+
+        animate();
     </script>
 </body>
 </html>
