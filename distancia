@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medidor de Distancia</title>
+  <style>
+    /* Estilos CSS para la página */
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Medidor de Distancia</h1>
+  
+  <div>
+    <label for="origin">Origen:</label>
+    <input type="text" id="origin" placeholder="Ingrese el origen">
+
+    <label for="destination">Destino:</label>
+    <input type="text" id="destination" placeholder="Ingrese el destino">
+
+    <button onclick="calculateDistance()">Calcular</button>
+  </div>
+
+  <div id="map"></div>
+  <div id="distance"></div>
+
+  <script>
+    // Función para calcular la distancia entre los lugares ingresados
+    function calculateDistance() {
+      var origin = document.getElementById('origin').value;
+      var destination = document.getElementById('destination').value;
+
+      var geocoder = new google.maps.Geocoder();
+
+      geocoder.geocode({ 'address': origin }, function (results, status) {
+        if (status === 'OK') {
+          var originLocation = results[0].geometry.location;
+
+          geocoder.geocode({ 'address': destination }, function (results, status) {
+            if (status === 'OK') {
+              var destinationLocation = results[0].geometry.location;
+
+              var distanceService = new google.maps.DistanceMatrixService();
+              distanceService.getDistanceMatrix({
+                origins: [originLocation],
+                destinations: [destinationLocation],
+                travelMode: google.maps.TravelMode.DRIVING
+              }, function (response, status) {
+                if (status === 'OK') {
+                  var distance = response.rows[0].elements[0].distance.text;
+                  var duration = response.rows[0].elements[0].duration.text;
+
+                  document.getElementById('distance').innerHTML = 'Distancia: ' + distance + ', Duración: ' + duration;
+                } else {
+                  alert('Error al calcular la distancia: ' + status);
+                }
+              });
+            } else {
+              alert('Error al obtener la ubicación de destino: ' + status);
+            }
+          });
+        } else {
+          alert('Error al obtener la ubicación de origen: ' + status);
+        }
+      });
+    }
+  </script>
+
+  <!-- Incluye la API de Google Maps -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBALM4qFgJhVWgaHfKm0Qhb8sfIiz6Pv_c&libraries=places"></script>
+</body>
+</html>
