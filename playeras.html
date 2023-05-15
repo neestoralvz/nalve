@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Dibujo del diseño de la playera</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/rough.js/3.2.0/rough.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body {
             display: flex;
@@ -10,35 +10,56 @@
             align-items: center;
             height: 100vh;
             background-color: #f7f7f7;
+            margin: 0;
         }
 
-        canvas {
+        #canvas {
             border: 1px solid #ddd;
         }
     </style>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
+    <div id="canvas"></div>
 
     <script>
-        const canvas = document.getElementById('canvas');
-        const context = canvas.getContext('2d');
+        function setup() {
+            const canvas = createCanvas(600, 700);
+            canvas.parent('canvas');
 
-        const rc = rough.canvas(canvas);
+            background(255);
+            noLoop();
 
-        // Dibujo de la playera
-        rc.rectangle(100, 100, 400, 500, { fill: '#fff', roughness: 0.5, fillWeight: 2 });
+            // Dibujo de la playera
+            fill('#00FF00');
+            stroke(0);
+            strokeWeight(2);
+            rect(100, 100, 400, 500);
 
-        // Dibujo del verso
-        rc.rectangle(150, 250, 300, 200, { fill: 'rgba(30, 70, 94, 0.2)', fillWeight: 1 });
+            // Dibujo de las ilustraciones
+            fill('rgba(0, 0, 0, 0.2)');
+            noStroke();
+            ellipse(250, 350, 180, 180);
+            fill('rgba(0, 0, 0, 0.4)');
+            ellipse(210, 380, 30, 30);
+            ellipse(290, 380, 30, 30);
 
-        // Dibujo de las ilustraciones
-        rc.circle(180, 350, 30, { fill: 'rgba(30, 70, 94, 0.4)', roughness: 0.8 });
-        rc.circle(320, 350, 30, { fill: 'rgba(30, 70, 94, 0.4)', roughness: 0.8 });
+            // Dibujo de la corona
+            fill('rgba(0, 0, 0, 0.4)');
+            stroke(0);
+            beginShape();
+            vertex(250, 220);
+            vertex(230, 320);
+            vertex(270, 320);
+            endShape(CLOSE);
 
-        // Dibujo de la corona
-        rc.path('M 250 200 L 225 275 L 275 275 Z', { fill: 'rgba(30, 70, 94, 0.4)', roughness: 0.8 });
-
+            // Dibujo del verso
+            textSize(28);
+            textAlign(CENTER, CENTER);
+            fill('#1e465e');
+            text("En la Feria del Ostion,", 300, 430);
+            text("José Alberto brilla sin comparación.", 300, 470);
+            text("Su reinado es toda una sensación.", 300, 510);
+        }
     </script>
 </body>
 </html>
