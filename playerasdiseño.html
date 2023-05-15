@@ -1,81 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Feria del Ostion - Diseño de Playeras</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.0/svg.min.js"></script>
+    <title>Representación del Diseño de Playeras</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+            margin: 0;
+            overflow: hidden;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #1e465e;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        h2 {
-            color: #1e465e;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #555;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-        #illustration {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
+        canvas {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Diseño de Playeras - Feria del Ostion</h1>
-        <h2>Parte Trasera</h2>
-        <p>En la parte trasera de las playeras, se colocará el verso:</p>
-        <p>En la Feria del Ostion, José Alberto brilla sin comparación. Su reinado es toda una sensación.</p>
-        <p>El verso estará ubicado en el centro de la playera, con una tipografía elegante y legible.</p>
-        <div id="illustration"></div>
-        <p>Además, se agregarán elementos gráficos sutiles relacionados con el mar y la realeza.</p>
-        <p>La composición será equilibrada, distribuyendo los elementos de manera armoniosa alrededor del verso.</p>
-        <p>Recuerda colaborar estrechamente con tu diseñador gráfico para refinar y adaptar el diseño según tus preferencias y requisitos técnicos específicos.</p>
-    </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script>
-        // Código JavaScript utilizando SVG.js
-        const draw = SVG().addTo('#illustration').size(400, 200);
-        
-        // Dibujar el verso
-        draw.text("En la Feria del Ostion, José Alberto brilla sin comparación.")
-            .font({ size: 20, family: 'Arial', anchor: 'middle' })
-            .move(200, 50);
-        
-        draw.text("Su reinado es toda una sensación.")
-            .font({ size: 20, family: 'Arial', anchor: 'middle' })
-            .move(200, 100);
-        
-        // Dibujar ilustraciones
-        const crown = draw.image('crown.svg', 50, 50).move(100, 150);
-        
-        const ostion1 = draw .image('ostion.svg', 30, 30).move(150, 150);
-        const ostion2 = draw.image('ostion.svg', 30, 30).move(200, 150);
-        const ostion3 = draw.image('ostion.svg',         30, 30).move(250, 150);
-        
-        // Agregar estilos a las ilustraciones
-        crown.style('opacity: 0.8');
-        ostion1.style('opacity: 0.6');
-        ostion2.style('opacity: 0.6');
-        ostion3.style('opacity: 0.6');
-    </script>
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            background(247);
+        }
+
+        function draw() {
+            // Dibuja el contenedor
+            let containerWidth = min(width * 0.8, 800);
+            let containerHeight = min(height * 0.8, 600);
+            let containerX = (width - containerWidth) / 2;
+            let containerY = (height - containerHeight) / 2;
+            fill(255);
+            stroke(0);
+            strokeWeight(2);
+            rect(containerX, containerY, containerWidth, containerHeight, 10);
+
+            // Dibuja el texto
+            let verse = "En la Feria del Ostion,\nJosé Alberto brilla sin comparación.\nSu reinado es toda una sensación.";
+            let verseX = containerX + containerWidth / 2;
+            let verseY = containerY + containerHeight / 2;
+            textAlign(CENTER, CENTER);
+            textSize(24);
+            fill(30, 70, 94);
+            text(verse, verseX, verseY);
+
+            // Dibuja las ilustraciones
+            let crownSize = 100;
+            let oysterSize = 50;
+            let waveSizeX = 100;
+            let waveSizeY = 50;
+
+            let crownX = containerX + containerWidth / 2;
+            let crownY = containerY + containerHeight * 0.3;
+            drawCrown(crownX, crownY, crownSize);
+
+            let oysterX1 = containerX + containerWidth * 0.4;
+            let oysterY = containerY + containerHeight * 0.6;
+            drawOyster(oysterX1, oysterY, oysterSize);
+
+            let oysterX2 = containerX + containerWidth * 0.6;
+            drawOyster(oysterX2, oysterY, oysterSize);
+
+            let waveX1 = containerX + containerWidth * 0.3;
+            let waveY = containerY + containerHeight * 0.7;
+            drawWave(waveX1, waveY, waveSizeX, waveSizeY);
+
+            let waveX2 = containerX + containerWidth * 0.7;
+            drawWave(waveX2, waveY, waveSizeX, waveSizeY);
+        }
+
+        function drawCrown(x, y, size) {
+            fill(255, 215, 0); // Color dorado
+            noStroke();
+            // Dibuja la forma de la corona
+            triangle(x - size / 2, y + size / 3, x + size / 2, y + size / 3, x, y - size / 2);
+            rect(x - size / 4, y + size / 3, size / 2, size / 2);
+        }
+
+        function drawOyster(x, y, size) {
+            fill(192); // Color gris
+            noStroke();m
+            // Dibuja la forma del ostiónfunction drawOyster(x, y, size) {
+fill(192); // Color gris
+noStroke();
+// Dibuja la forma del ostión
+beginShape();
+vertex(x - size / 2, y);
+bezierVertex(x - size / 2, y - size / 2, x + size / 2, y - size / 2, x + size / 2, y);
+bezierVertex(x + size / 2, y + size / 2, x - size / 2, y + size / 2, x - size / 2, y);
+endShape(CLOSE);
+}
+
+function drawWave(x, y, sizeX, sizeY) {
+fill(30, 144, 255); // Color azul
+noStroke();
+// Dibuja la forma de la ola
+beginShape();
+vertex(x - sizeX / 2, y);
+bezierVertex(x - sizeX / 4, y - sizeY, x + sizeX / 4, y - sizeY, x + sizeX / 2, y);
+bezierVertex(x + sizeX / 4, y + sizeY, x - sizeX / 4, y + sizeY, x - sizeX / 2, y);
+endShape(CLOSE);
+}
+
+function windowResized() {
+resizeCanvas(windowWidth, windowHeight);
+}
+</script>
+
 </body>
 </html>
-
