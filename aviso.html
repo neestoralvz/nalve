@@ -15,14 +15,32 @@
         }
 
         p {
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .container {
             max-width: 600px;
             margin: 0 auto;
         }
+        
+        #qrcode {
+            text-align: center;
+            margin: 20px 0;
+        }
     </style>
+    <!-- Biblioteca externa para generar códigos QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        // Generar código QR
+        $(document).ready(function() {
+            var qr = new QRCode(document.getElementById("qrcode"), {
+                text: "https://calendly.com/nestoralvarez/60min",
+                width: 200,
+                height: 200
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -31,8 +49,9 @@
         <ul>
             <li>Envíame un mensaje SMS o en WhatsApp.</li>
             <li>Si es para la firma de un documento, por favor, escríbeme por mensajería instantánea o espera a verme fuera de mi oficina.</li>
-            <li>Para agendar una reunión, visita el enlace QR con mi calendario en Calendly.</li>
+            <li>Para agendar una reunión, visita el enlace QR con mi calendario en Calendly:</li>
         </ul>
+        <div id="qrcode"></div>
         <p>Ten en cuenta que salgo de mi oficina cada hora y media o cada dos horas. Si no es urgente, por favor, espera a encontrarme fuera de mi oficina. ¡Gracias por tu comprensión y colaboración!</p>
     </div>
 </body>
