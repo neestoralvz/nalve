@@ -5,9 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pirámide Egipcia</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="sketch.js"></script>
   </head>
   <body>
     <h1>Pirámide Egipcia con p5.js</h1>
+
+    <script>
+      function setup() {
+        createCanvas(400, 400);
+      }
+
+      function draw() {
+        background(255);
+
+        stroke(0);
+        fill(200);
+
+        // Dibuja la base de la pirámide
+        beginShape();
+        vertex(50, 300);
+        vertex(350, 300);
+        vertex(300, 200);
+        vertex(100, 200);
+        endShape(CLOSE);
+
+        // Dibuja la cara frontal de la pirámide
+        beginShape();
+        vertex(100, 200);
+        vertex(300, 200);
+        vertex(200, 100);
+        endShape(CLOSE);
+
+        // Dibuja la cara lateral de la pirámide
+        beginShape();
+        vertex(300, 200);
+        vertex(350, 300);
+        vertex(200, 100);
+        endShape(CLOSE);
+      }
+    </script>
   </body>
 </html>
