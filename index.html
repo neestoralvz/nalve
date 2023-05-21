@@ -3,46 +3,7 @@
 <head>
   <title>Índice de Páginas Web</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      // Realiza una solicitud GET a la API de GitHub para obtener la lista de archivos del repositorio
-      $.ajax({
-        url: 'https://api.github.com/repos/neestoralvz/nalve/contents/',
-        dataType: 'json'
-      })
-      .done(function(data) {
-        // Filtra los archivos para mostrar solo las páginas web (por ejemplo, archivos HTML)
-        var webPages = data.filter(function(item) {
-          return item.type === 'file' && item.name.endsWith('.html');
-        });
-
-        // Genera la lista de enlaces a las páginas web en el índice
-        var list = $('<ul>');
-        webPages.forEach(function(page) {
-          // Obtiene el contenido del archivo para extraer el título
-          $.ajax({
-            url: page.download_url,
-            dataType: 'text'
-          })
-          .done(function(content) {
-            var title = /<title>(.*?)<\/title>/g.exec(content)[1];
-            var listItem = $('<li>');
-            var link = $('<a>').attr('href', page.name).text(title);
-            listItem.append(link);
-            list.append(listItem);
-          })
-          .fail(function() {
-            console.error('Error al obtener el contenido del archivo ' + page.name);
-          });
-        });
-
-        $('#page-list').append(list);
-      })
-      .fail(function() {
-        console.error('Error al obtener la lista de archivos');
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 </head>
 <body>
   <h1>Índice de Páginas Web</h1>
